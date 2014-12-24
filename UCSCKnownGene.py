@@ -51,27 +51,27 @@ class UCSCKnownGene:
 
         if (region == "5utr"):
             for chunk in self.utr5:
-                returnVal.append("%s\t%d\t%d\t%s\t0\t%c\t%d\t%d\t0" % (chunk[0], chunk[1], chunk[2], chunk[3]+"_5utr",self.strand, chunk[1],chunk[2]))
+                returnVal.append("%s\t%d\t%d\t%s\t0\t%c\t%d\t%d\t0" % (chunk[0], chunk[1], chunk[2], chunk[3]+"__5utr",self.strand, chunk[1],chunk[2]))
 
         elif (region == "5utr_start"):
             for chunk in self.utr5_start:
-                returnVal.append("%s\t%d\t%d\t%s\t0\t%c\t%d\t%d\t0" % (chunk[0], chunk[1], chunk[2], chunk[3]+"_5utr_start",self.strand, chunk[1],chunk[2]))
+                returnVal.append("%s\t%d\t%d\t%s\t0\t%c\t%d\t%d\t0" % (chunk[0], chunk[1], chunk[2], chunk[3]+"__5utr_start",self.strand, chunk[1],chunk[2]))
 
         elif (region == "cds"):
             for chunk in self.cds:
-                returnVal.append("%s\t%d\t%d\t%s\t0\t%c\t%d\t%d\t0" % (chunk[0], chunk[1], chunk[2], chunk[3]+"_cds",self.strand, chunk[1],chunk[2]))
+                returnVal.append("%s\t%d\t%d\t%s\t0\t%c\t%d\t%d\t0" % (chunk[0], chunk[1], chunk[2], chunk[3]+"__cds",self.strand, chunk[1],chunk[2]))
 
         elif (region == "3utr"):
             for chunk in self.utr3:
-                returnVal.append("%s\t%d\t%d\t%s\t0\t%c\t%d\t%d\t0" % (chunk[0], chunk[1], chunk[2], chunk[3]+"_3utr",self.strand, chunk[1],chunk[2]))
+                returnVal.append("%s\t%d\t%d\t%s\t0\t%c\t%d\t%d\t0" % (chunk[0], chunk[1], chunk[2], chunk[3]+"__3utr",self.strand, chunk[1],chunk[2]))
 
         elif (region == "exons"):
             for chunk in self.exons:
-                returnVal.append("%s\t%d\t%d\t%s\t0\t%c\t%d\t%d\t0" % (chunk[0], chunk[1], chunk[2], chunk[3]+"_exon",self.strand, chunk[1],chunk[2]))
+                returnVal.append("%s\t%d\t%d\t%s\t0\t%c\t%d\t%d\t0" % (chunk[0], chunk[1], chunk[2], chunk[3]+"__exon",self.strand, chunk[1],chunk[2]))
 
         elif (region == "introns"):
             for chunk in self.introns:
-                returnVal.append("%s\t%d\t%d\t%s\t0\t%c\t%d\t%d\t0" % (chunk[0], chunk[1], chunk[2], chunk[3]+"_intron",self.strand, chunk[1],chunk[2]))
+                returnVal.append("%s\t%d\t%d\t%s\t0\t%c\t%d\t%d\t0" % (chunk[0], chunk[1], chunk[2], chunk[3]+"__intron",self.strand, chunk[1],chunk[2]))
         else:
             print "UCSCKnownGene bedFormat error: currently only regions 5utr/cds/3utr/exons/introns are supported"
             
@@ -98,7 +98,7 @@ class UCSCKnownGene:
         if (region == "5utr"):
             chromStart = self.utr5[0][1] # start of feature is start of first block
             chromEnd = self.utr5[-1][2] # end of feature is end of last block 
-            regionName = self.name + "_5utr"
+            regionName = self.name + "__5utr"
 
             blockCount = len(self.utr5)
             blockSizes = ''.join(["%d," % (chunk[2]-chunk[1]) for chunk in self.utr5])
@@ -109,7 +109,7 @@ class UCSCKnownGene:
         elif (region == "5utr_start"):
             chromStart = self.utr5start[0][1] # start of feature is start of first block
             chromEnd = self.utr5start[-1][2] # end of feature is end of last block 
-            regionName = self.name + "_5utr_start"
+            regionName = self.name + "__5utr_start"
 
             blockCount = len(self.utr5start)
             blockSizes = ''.join(["%d," % (chunk[2]-chunk[1]) for chunk in self.utr5start])
@@ -120,7 +120,7 @@ class UCSCKnownGene:
         elif (region == "cds"):
             chromStart = self.cds[0][1] # start of feature is start of first block
             chromEnd = self.cds[-1][2] # end of feature is end of last block 
-            regionName = self.name + "_cds"
+            regionName = self.name + "__cds"
             blockCount = len(self.cds)
             blockSizes = ''.join(["%d," % (chunk[2]-chunk[1]) for chunk in self.cds])
             blockStarts = ''.join(["%d," % (chunk[1]-chromStart) for chunk in self.cds])
@@ -130,7 +130,7 @@ class UCSCKnownGene:
         elif (region == "3utr"):
             chromStart = self.utr3[0][1] # start of feature is start of first block
             chromEnd = self.utr3[-1][2] # end of feature is end of last block 
-            regionName = self.name + "_3utr"
+            regionName = self.name + "__3utr"
             blockCount = len(self.utr3)
             blockSizes = ''.join(["%d," % (chunk[2]-chunk[1]) for chunk in self.utr3])
             blockStarts = ''.join(["%d," % (chunk[1]-chromStart) for chunk in self.utr3])
@@ -140,7 +140,7 @@ class UCSCKnownGene:
         elif (region == "exons"):
             chromStart = self.exons[0][1] # start of feature is start of first block
             chromEnd = self.exons[-1][2] # end of feature is end of last block 
-            regionName = self.name + "_exon"
+            regionName = self.name + "__exon"
             blockCount = len(self.exons)
             blockSizes = ''.join(["%d," % (chunk[2]-chunk[1]) for chunk in self.exons])
             blockStarts = ''.join(["%d," % (chunk[1]-chromStart) for chunk in self.exons])
@@ -150,7 +150,7 @@ class UCSCKnownGene:
         elif (region == "introns"):
             chromStart = self.introns[0][1] # start of feature is start of first block
             chromEnd = self.introns[-1][2] # end of feature is end of last block 
-            regionName = self.name + "_intron"
+            regionName = self.name + "__intron"
             blockCount = len(self.introns)
             blockSizes = ''.join(["%d," % (chunk[2]-chunk[1]) for chunk in self.introns])
             blockStarts = ''.join(["%d," % (chunk[1]-chromStart) for chunk in self.introns])
@@ -266,6 +266,10 @@ def createGene(knownGeneLineString):
             added = 0 
             index = 0
             while(added < 27):
+                # this is if there is only one CDS exon < 27nt
+                try: a=foo.cds[index]
+                except: break
+                
                 if (foo.cds[index][2] - foo.cds[index][1]) > 27 - added: 
                     foo.utr5start.append((foo.chrom, foo.cds[index][1], foo.cds[index][1] + 27 - added, foo.name))
                     foo.utr5startLen += 27 - added
@@ -349,10 +353,10 @@ def createGene(knownGeneLineString):
         if (foo.coding): 
             added = 0 
             index = -1
-
             while(added < 27):  #cdsEnd is the start, and the last exon is the first exon of the cds 
-                #print foo.cds
-                #print foo.cds[index]
+                # this is if there is only one CDS exon < 27nt
+                try: a=foo.cds[index]
+                except: break
                 
             # need to insert at the beginning here and not append
 
